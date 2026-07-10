@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dj5mirkd6m3s4" path="res://ttf_testasd.tscn" id="7_ygfup"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bpavk"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 20.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8vxo5"]
 albedo_texture = ExtResource("1_xi8hl")
@@ -58,7 +60,7 @@ height = 4.0
 sides = 32
 
 [node name="Player" parent="." unique_id=1394749679 instance=ExtResource("5_8repx")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -22.962242, 80.11489, 19.098946)
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -22.962242, 80.11489, 19.098946)
 speed = 4
 acceleration = 20.0
 jump = 4
