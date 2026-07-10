@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bldnblyoin0i1"]
+
+[ext_resource type="Texture2D" uid="uid://c0o0ws3otgsts" path="res://assets/grids/Dark/texture_04.png" id="1_xi8hl"]
+[ext_resource type="Material" uid="uid://bpyeiwau124tb" path="res://assets/materials/orange_grid.tres" id="3_8repx"]
+[ext_resource type="Environment" uid="uid://belkyvf25md22" path="res://env.tres" id="3_uqaac"]
+[ext_resource type="PackedScene" uid="uid://bnnlobg0flifw" path="res://scenes/player.tscn" id="4_uqaac"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bpavk"]
+dof_blur_far_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8vxo5"]
+albedo_texture = ExtResource("1_xi8hl")
+uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uqaac"]
+size = Vector3(500, 1, 500)
+
+[node name="world" type="Node3D" unique_id=2042349740]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1139203965]
+environment = ExtResource("3_uqaac")
+camera_attributes = SubResource("CameraAttributesPractical_bpavk")
+
+[node name="floor" type="CSGBox3D" parent="." unique_id=40046607]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_8vxo5")
+size = Vector3(500, 1, 500)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor" unique_id=25806729]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D" unique_id=262934313]
+shape = SubResource("BoxShape3D_uqaac")
+
+[node name="arch" type="CSGCombiner3D" parent="." unique_id=1713971812]
+material_override = ExtResource("3_8repx")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="arch" unique_id=1835184911]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+size = Vector3(4, 4, 4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="arch" unique_id=245110897]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+operation = 2
+size = Vector3(2, 2, 4)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="arch" unique_id=873590226]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2, 0)
+operation = 2
+radius = 1.0
+height = 4.0
+sides = 32
+
+[node name="player" parent="." unique_id=1458496913 instance=ExtResource("4_uqaac")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1803482442]
+transform = Transform3D(0.7184895, -0.42150998, 0.5532649, -0.16095096, 0.6731004, 0.7218243, -0.6766591, -0.60767186, 0.41577315, 5.835122, 1.8160655, -4.6175694)
+shadow_enabled = true
