@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dj5mirkd6m3s4"]
+
+[ext_resource type="PackedScene" uid="uid://07enrg7l2nuj" path="res://assets/TTF-test.glb" id="1_tg52g"]
+[ext_resource type="Shader" uid="uid://b63nuxsr0qhgx" path="res://outline.gdshader" id="2_bpe72"]
+[ext_resource type="Shape3D" uid="uid://cmdfcyb02adh8" path="res://level_collision_test.res" id="2_q6let"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bpe72"]
+render_priority = 0
+shader = ExtResource("2_bpe72")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 2.0
+
+[node name="TTF-test" unique_id=1662259057 instance=ExtResource("1_tg52g")]
+
+[node name="ThirdFear-1" parent="." index="0" unique_id=1386752538]
+material_overlay = SubResource("ShaderMaterial_bpe72")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ThirdFear-1" index="0" unique_id=983446892]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ThirdFear-1/StaticBody3D" index="0" unique_id=1784207814]
+shape = ExtResource("2_q6let")

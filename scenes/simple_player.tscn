@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://dcpr24o7ijdc6" path="res://scripts/simple_player.gd" id="1_o8fas"]
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_o8fas"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 radius = 1.0
 height = 4.0
@@ -11,6 +13,10 @@ radius = 0.9
 
 [node name="Player" type="CharacterBody3D" unique_id=1394749679]
 script = ExtResource("1_o8fas")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=592508458]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0)
+mesh = SubResource("CapsuleMesh_o8fas")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1730943349]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

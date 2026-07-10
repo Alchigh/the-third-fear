@@ -5,9 +5,11 @@
 [ext_resource type="Environment" uid="uid://belkyvf25md22" path="res://assets/env.tres" id="3_uqaac"]
 [ext_resource type="PackedScene" uid="uid://bnnlobg0flifw" path="res://scenes/player.tscn" id="4_uqaac"]
 [ext_resource type="PackedScene" uid="uid://cfxjg6s8i8cje" path="res://scenes/simple_player.tscn" id="5_8repx"]
+[ext_resource type="PackedScene" uid="uid://dit7xbeq4fl3f" path="res://level2.tscn" id="6_667gv"]
+[ext_resource type="AudioStream" uid="uid://dfxtu5421xpua" path="res://assets/audio/614546__szegvari__myst-dark-drone-synth-female-vocal-choir-atmo-ambience-cinematic.wav" id="7_8mu4x"]
+[ext_resource type="PackedScene" uid="uid://dj5mirkd6m3s4" path="res://ttf_testasd.tscn" id="7_ygfup"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bpavk"]
-dof_blur_far_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8vxo5"]
 albedo_texture = ExtResource("1_xi8hl")
@@ -56,9 +58,25 @@ height = 4.0
 sides = 32
 
 [node name="Player" parent="." unique_id=1394749679 instance=ExtResource("5_8repx")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -22.962242, 80.11489, 19.098946)
+speed = 4
+acceleration = 20.0
+jump = 4
+crouch_speed = 4.0
 
 [node name="P1" type="Node3D" parent="." unique_id=1559904135]
 visible = false
 
 [node name="player" parent="P1" unique_id=1458496913 instance=ExtResource("4_uqaac")]
+
+[node name="levelT" parent="." unique_id=1266155727 instance=ExtResource("6_667gv")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+visible = false
+
+[node name="TTF-test" parent="." unique_id=1662259057 instance=ExtResource("7_ygfup")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1601422046]
+stream = ExtResource("7_8mu4x")
+autoplay = true
+bus = &"Music"

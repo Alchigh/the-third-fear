@@ -9,7 +9,7 @@ extends CharacterBody3D
 @export var jump = 8
 
 @export_subgroup("Crouch")
-@export var crouch_speed = 4.0
+@export var crouch_speed = 0.5
 @export var crouch_height = 2.0
 @export var crouch_transition = 8.0
 
