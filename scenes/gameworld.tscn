@@ -2,8 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://c0o0ws3otgsts" path="res://assets/grids/Dark/texture_04.png" id="1_xi8hl"]
 [ext_resource type="Material" uid="uid://bpyeiwau124tb" path="res://assets/materials/orange_grid.tres" id="3_8repx"]
-[ext_resource type="Environment" uid="uid://belkyvf25md22" path="res://env.tres" id="3_uqaac"]
+[ext_resource type="Environment" uid="uid://belkyvf25md22" path="res://assets/env.tres" id="3_uqaac"]
 [ext_resource type="PackedScene" uid="uid://bnnlobg0flifw" path="res://scenes/player.tscn" id="4_uqaac"]
+[ext_resource type="PackedScene" uid="uid://cfxjg6s8i8cje" path="res://scenes/simple_player.tscn" id="5_8repx"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bpavk"]
 dof_blur_far_enabled = true
@@ -20,6 +21,10 @@ size = Vector3(500, 1, 500)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1139203965]
 environment = ExtResource("3_uqaac")
 camera_attributes = SubResource("CameraAttributesPractical_bpavk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1803482442]
+transform = Transform3D(0.7184896, -0.42151004, 0.5532649, -0.16095097, 0.6731005, 0.72182447, -0.67665917, -0.6076719, 0.41577318, 5.835122, 1.8160655, -4.6175694)
+shadow_enabled = true
 
 [node name="floor" type="CSGBox3D" parent="." unique_id=40046607]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -50,8 +55,10 @@ radius = 1.0
 height = 4.0
 sides = 32
 
-[node name="player" parent="." unique_id=1458496913 instance=ExtResource("4_uqaac")]
+[node name="Player" parent="." unique_id=1394749679 instance=ExtResource("5_8repx")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1803482442]
-transform = Transform3D(0.7184895, -0.42150998, 0.5532649, -0.16095096, 0.6731004, 0.7218243, -0.6766591, -0.60767186, 0.41577315, 5.835122, 1.8160655, -4.6175694)
-shadow_enabled = true
+[node name="P1" type="Node3D" parent="." unique_id=1559904135]
+visible = false
+
+[node name="player" parent="P1" unique_id=1458496913 instance=ExtResource("4_uqaac")]

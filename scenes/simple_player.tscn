@@ -6,6 +6,9 @@
 radius = 1.0
 height = 4.0
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_o8fas"]
+radius = 0.9
+
 [node name="Player" type="CharacterBody3D" unique_id=1394749679]
 script = ExtResource("1_o8fas")
 
@@ -17,3 +20,8 @@ shape = SubResource("CapsuleShape3D_u8vuu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=634278712]
+
+[node name="TopCast" type="ShapeCast3D" parent="." unique_id=1009012879]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("SphereShape3D_o8fas")
+target_position = Vector3(0, 1, 0)
