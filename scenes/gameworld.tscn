@@ -2,12 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://c0o0ws3otgsts" path="res://assets/grids/Dark/texture_04.png" id="1_xi8hl"]
 [ext_resource type="Material" uid="uid://bpyeiwau124tb" path="res://assets/materials/orange_grid.tres" id="3_8repx"]
-[ext_resource type="Environment" uid="uid://belkyvf25md22" path="res://assets/env.tres" id="3_uqaac"]
+[ext_resource type="Environment" uid="uid://belkyvf25md22" path="res://assets/resources/env.tres" id="3_uqaac"]
 [ext_resource type="PackedScene" uid="uid://bnnlobg0flifw" path="res://scenes/player.tscn" id="4_uqaac"]
 [ext_resource type="PackedScene" uid="uid://cfxjg6s8i8cje" path="res://scenes/simple_player.tscn" id="5_8repx"]
-[ext_resource type="PackedScene" uid="uid://dit7xbeq4fl3f" path="res://level2.tscn" id="6_667gv"]
+[ext_resource type="PackedScene" uid="uid://dit7xbeq4fl3f" path="res://scenes/levelTests/level2.tscn" id="6_667gv"]
 [ext_resource type="AudioStream" uid="uid://dfxtu5421xpua" path="res://assets/audio/614546__szegvari__myst-dark-drone-synth-female-vocal-choir-atmo-ambience-cinematic.wav" id="7_8mu4x"]
-[ext_resource type="PackedScene" uid="uid://dj5mirkd6m3s4" path="res://ttf_testasd.tscn" id="7_ygfup"]
+[ext_resource type="PackedScene" uid="uid://dj5mirkd6m3s4" path="res://scenes/levelTests/ttf_testasd.tscn" id="7_ygfup"]
+[ext_resource type="PackedScene" uid="uid://b0bf22deqqi5" path="res://scenes/area_3d.tscn" id="9_32naq"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bpavk"]
 dof_blur_far_enabled = true
@@ -19,6 +20,9 @@ uv1_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uqaac"]
 size = Vector3(500, 1, 500)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_32naq"]
+size = Vector3(5.78, 1, 1.655)
 
 [node name="world" type="Node3D" unique_id=2042349740]
 
@@ -33,7 +37,7 @@ shadow_enabled = true
 [node name="floor" type="CSGBox3D" parent="." unique_id=40046607]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 material_override = SubResource("StandardMaterial3D_8vxo5")
-size = Vector3(500, 1, 500)
+size = Vector3(250, 1, 250)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="floor" unique_id=25806729]
 
@@ -42,6 +46,7 @@ shape = SubResource("BoxShape3D_uqaac")
 
 [node name="arch" type="CSGCombiner3D" parent="." unique_id=1713971812]
 material_override = ExtResource("3_8repx")
+use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="arch" unique_id=1835184911]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -59,12 +64,12 @@ radius = 1.0
 height = 4.0
 sides = 32
 
-[node name="Player" parent="." unique_id=1394749679 instance=ExtResource("5_8repx")]
+[node name="Simple_Player" parent="." unique_id=1394749679 instance=ExtResource("5_8repx")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -22.962242, 80.11489, 19.098946)
-speed = 4
+speed = 3
 acceleration = 20.0
 jump = 4
-crouch_speed = 4.0
+crouch_speed = 1.0
 
 [node name="P1" type="Node3D" parent="." unique_id=1559904135]
 visible = false
@@ -73,12 +78,28 @@ visible = false
 
 [node name="levelT" parent="." unique_id=1266155727 instance=ExtResource("6_667gv")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
-visible = false
 
 [node name="TTF-test" parent="." unique_id=1662259057 instance=ExtResource("7_ygfup")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+visible = false
 
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1601422046]
 stream = ExtResource("7_8mu4x")
 autoplay = true
 bus = &"Music"
+
+[node name="Area3D" parent="." unique_id=1883419226 instance=ExtResource("9_32naq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.38993, 61.379, 23.016628)
+
+[node name="CollisionShape3D" parent="Area3D" index="0" unique_id=1272626934]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.030334473, -1.0302048, -0.5341873)
+shape = SubResource("BoxShape3D_32naq")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1161984530]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.9583032, 0)
+use_collision = true
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+
+[editable path="TTF-test"]
+[editable path="Area3D"]

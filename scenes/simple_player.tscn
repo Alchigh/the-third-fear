@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cfxjg6s8i8cje"]
 
 [ext_resource type="Script" uid="uid://dcpr24o7ijdc6" path="res://scripts/simple_player.gd" id="1_o8fas"]
+[ext_resource type="PackedScene" uid="uid://ct2lpa3e4ieob" path="res://scenes/rock.tscn" id="2_nmi61"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_o8fas"]
 
@@ -13,6 +14,9 @@ radius = 0.9
 
 [node name="Player" type="CharacterBody3D" unique_id=1394749679]
 script = ExtResource("1_o8fas")
+fall_dmg_threshold = 250
+rock_scene = ExtResource("2_nmi61")
+throw_force = 5.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=592508458]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0)
@@ -27,7 +31,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=634278712]
 
+[node name="Marker3D" type="Marker3D" parent="Head" unique_id=1316130068]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -2)
+
 [node name="TopCast" type="ShapeCast3D" parent="." unique_id=1009012879]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 shape = SubResource("SphereShape3D_o8fas")
 target_position = Vector3(0, 1, 0)
+
+[node name="Label" type="Label" parent="." unique_id=1196559165]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 32
+text = ":D"
