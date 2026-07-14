@@ -14,12 +14,12 @@ radius = 0.9
 
 [node name="Player" type="CharacterBody3D" unique_id=1394749679]
 script = ExtResource("1_o8fas")
-fall_dmg_threshold = 250
 rock_scene = ExtResource("2_nmi61")
 throw_force = 5.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=592508458]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0)
+transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, 0, 2, 0)
+cast_shadow = 0
 mesh = SubResource("CapsuleMesh_o8fas")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1730943349]

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c4ooqteoyklih"]
+
+[ext_resource type="PackedScene" uid="uid://d3w8nd8afks1l" path="res://assets/import/world-00.glb" id="1_vhcyi"]
+[ext_resource type="Shader" uid="uid://b63nuxsr0qhgx" path="res://scripts/outline.gdshader" id="2_6x6sl"]
+[ext_resource type="Shape3D" uid="uid://r6trsyf3wlxi" path="res://assets/resources/world-00-collision.res" id="2_ijp0s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cxcxd"]
+render_priority = 0
+shader = ExtResource("2_6x6sl")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 1.0
+
+[node name="world-00" unique_id=1829251274 instance=ExtResource("1_vhcyi")]
+
+[node name="ThirdFear03-0" parent="." index="0" unique_id=1295633210]
+material_overlay = SubResource("ShaderMaterial_cxcxd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ThirdFear03-0" index="0" unique_id=667276532]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ThirdFear03-0/StaticBody3D" index="0" unique_id=80478298]
+shape = ExtResource("2_ijp0s")

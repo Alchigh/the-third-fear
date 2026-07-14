@@ -3,12 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://c0o0ws3otgsts" path="res://assets/grids/Dark/texture_04.png" id="1_xi8hl"]
 [ext_resource type="Material" uid="uid://bpyeiwau124tb" path="res://assets/materials/orange_grid.tres" id="3_8repx"]
 [ext_resource type="Environment" uid="uid://belkyvf25md22" path="res://assets/resources/env.tres" id="3_uqaac"]
-[ext_resource type="PackedScene" uid="uid://bnnlobg0flifw" path="res://scenes/player.tscn" id="4_uqaac"]
 [ext_resource type="PackedScene" uid="uid://cfxjg6s8i8cje" path="res://scenes/simple_player.tscn" id="5_8repx"]
-[ext_resource type="PackedScene" uid="uid://dit7xbeq4fl3f" path="res://scenes/levelTests/level2.tscn" id="6_667gv"]
 [ext_resource type="AudioStream" uid="uid://dfxtu5421xpua" path="res://assets/audio/614546__szegvari__myst-dark-drone-synth-female-vocal-choir-atmo-ambience-cinematic.wav" id="7_8mu4x"]
 [ext_resource type="PackedScene" uid="uid://dj5mirkd6m3s4" path="res://scenes/levelTests/ttf_testasd.tscn" id="7_ygfup"]
 [ext_resource type="PackedScene" uid="uid://b0bf22deqqi5" path="res://scenes/area_3d.tscn" id="9_32naq"]
+[ext_resource type="PackedScene" uid="uid://b7ks57n3ixke0" path="res://scenes/angel.tscn" id="9_sr1yb"]
+[ext_resource type="PackedScene" uid="uid://c4ooqteoyklih" path="res://scenes/world_00.tscn" id="10_sr1yb"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bpavk"]
 dof_blur_far_enabled = true
@@ -19,74 +19,64 @@ albedo_texture = ExtResource("1_xi8hl")
 uv1_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uqaac"]
-size = Vector3(500, 1, 500)
+size = Vector3(250, 1, 250)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_32naq"]
 size = Vector3(5.78, 1, 1.655)
 
 [node name="world" type="Node3D" unique_id=2042349740]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1139203965]
+[node name="env" type="Node3D" parent="." unique_id=266820594]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="env" unique_id=1139203965]
 environment = ExtResource("3_uqaac")
 camera_attributes = SubResource("CameraAttributesPractical_bpavk")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1803482442]
-transform = Transform3D(0.7184896, -0.42151004, 0.5532649, -0.16095097, 0.6731005, 0.72182447, -0.67665917, -0.6076719, 0.41577318, 5.835122, 1.8160655, -4.6175694)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="env" unique_id=1803482442]
+transform = Transform3D(0.7184896, -0.42151007, 0.553265, -0.16095097, 0.6731005, 0.7218245, -0.67665917, -0.6076719, 0.41577318, 5.835122, 1.8160655, -4.6175694)
 shadow_enabled = true
 
-[node name="floor" type="CSGBox3D" parent="." unique_id=40046607]
+[node name="terrain" type="Node3D" parent="." unique_id=1236440547]
+
+[node name="floor" type="CSGBox3D" parent="terrain" unique_id=40046607]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_8vxo5")
 size = Vector3(250, 1, 250)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="floor" unique_id=25806729]
+[node name="StaticBody3D" type="StaticBody3D" parent="terrain/floor" unique_id=25806729]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D" unique_id=262934313]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/floor/StaticBody3D" unique_id=262934313]
 shape = SubResource("BoxShape3D_uqaac")
 
-[node name="arch" type="CSGCombiner3D" parent="." unique_id=1713971812]
+[node name="arch" type="CSGCombiner3D" parent="terrain" unique_id=1713971812]
 material_override = ExtResource("3_8repx")
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="arch" unique_id=1835184911]
+[node name="CSGBox3D" type="CSGBox3D" parent="terrain/arch" unique_id=1835184911]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 size = Vector3(4, 4, 4)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="arch" unique_id=245110897]
+[node name="CSGBox3D2" type="CSGBox3D" parent="terrain/arch" unique_id=245110897]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 operation = 2
 size = Vector3(2, 2, 4)
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="arch" unique_id=873590226]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="terrain/arch" unique_id=873590226]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2, 0)
 operation = 2
 radius = 1.0
 height = 4.0
 sides = 32
 
+[node name="world-00" parent="terrain" unique_id=1829251274 instance=ExtResource("10_sr1yb")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -56.5, 0, 63.605)
+
 [node name="Simple_Player" parent="." unique_id=1394749679 instance=ExtResource("5_8repx")]
-transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -22.962242, 80.11489, 19.098946)
-speed = 3
-acceleration = 20.0
+transform = Transform3D(-0.44999996, 0, 3.9340247e-08, 0, 0.44999996, 0, -3.9340247e-08, 0, -0.44999996, -24.686749, 80.03318, 13.62463)
 jump = 4
+fall_dmg_threshold = 250
 crouch_speed = 1.0
-
-[node name="P1" type="Node3D" parent="." unique_id=1559904135]
-visible = false
-
-[node name="player" parent="P1" unique_id=1458496913 instance=ExtResource("4_uqaac")]
-
-[node name="levelT" parent="." unique_id=1266155727 instance=ExtResource("6_667gv")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
-
-[node name="TTF-test" parent="." unique_id=1662259057 instance=ExtResource("7_ygfup")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
-visible = false
-
-[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1601422046]
-stream = ExtResource("7_8mu4x")
-autoplay = true
-bus = &"Music"
 
 [node name="Area3D" parent="." unique_id=1883419226 instance=ExtResource("9_32naq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.38993, 61.379, 23.016628)
@@ -95,11 +85,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.38993, 61.379, 23.016628)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.030334473, -1.0302048, -0.5341873)
 shape = SubResource("BoxShape3D_32naq")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1161984530]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.9583032, 0)
-use_collision = true
+[node name="TTF-test" parent="." unique_id=1662259057 instance=ExtResource("7_ygfup")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, -218.36514)
+visible = false
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1601422046]
+stream = ExtResource("7_8mu4x")
+autoplay = true
+bus = &"Music"
+
+[node name="angel" parent="." unique_id=1689193525 instance=ExtResource("9_sr1yb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.295284, 43.5755, 76.26394)
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
 
-[editable path="TTF-test"]
 [editable path="Area3D"]
+[editable path="TTF-test"]

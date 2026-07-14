@@ -46,6 +46,7 @@ func _ready():
 	stand_height = collision_shape.shape.height
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	start_local = self.position
+	look_rot.y = rotation_degrees.y
 
 func _physics_process(delta: float) -> void:
 	var move_speed = speed

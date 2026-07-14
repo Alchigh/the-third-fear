@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://b7ks57n3ixke0"]
+
+[ext_resource type="Shader" uid="uid://b63nuxsr0qhgx" path="res://scripts/outline.gdshader" id="1_fgtlr"]
+[ext_resource type="Script" uid="uid://76isbhqtt7f" path="res://scenes/angel.gd" id="1_mtvsi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fgtlr"]
+albedo_color = Color(0, 0, 0, 1)
+disable_receive_shadows = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mtvsi"]
+render_priority = 0
+shader = ExtResource("1_fgtlr")
+shader_parameter/outline_color = Color(1, 0, 0, 1)
+shader_parameter/outline_width = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_6gyu6"]
+subdivide_width = 10
+subdivide_height = 10
+
+[sub_resource type="Animation" id="Animation_fgtlr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mtvsi"]
+resource_name = "idle"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.15, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6gyu6"]
+_data = {
+&"RESET": SubResource("Animation_fgtlr"),
+&"idle": SubResource("Animation_mtvsi")
+}
+
+[node name="angel" type="Node3D" unique_id=1689193525]
+script = ExtResource("1_mtvsi")
+
+[node name="mesh" type="MeshInstance3D" parent="." unique_id=670772294]
+transform = Transform3D(28.86287, 39.438396, 10.561598, -28.85482, 28.85482, -28.892881, -28.88484, 10.58357, 39.41642, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_fgtlr")
+material_overlay = SubResource("ShaderMaterial_mtvsi")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_6gyu6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1983180220]
+libraries/ = SubResource("AnimationLibrary_6gyu6")
+autoplay = &"idle"
