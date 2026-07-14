@@ -28,13 +28,22 @@ class_name Player
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var top_cast: ShapeCast3D = $TopCast
 @onready var label: Label = $Label
+@onready var angel: Node3D = $"../terrain/angel"
+@onready var god_bass: AudioStreamPlayer = $"../terrain/angel/god_bass"
+@onready var ray_cast: RayCast3D = $Head/RayCast3D
+var looking_at_angel := false
 
 # Get the gravity from project settings
 var gravity = 2 * ProjectSettings.get_setting("physics/3d/default_gravity")
 var look_rot : Vector2
 var stand_height : float
 var og_vel : float = 0.0
+## Where player start
 var start_local : Vector3
+
+var force_look : bool = false
+var look_timer := 0.0
+signal loud_noise
 
 @export_group("Rock")
 @export var rock_scene: PackedScene
@@ -47,16 +56,17 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	start_local = self.position
 	look_rot.y = rotation_degrees.y
+	loud_noise.connect(angel.scream)
 
 func _physics_process(delta: float) -> void:
 	var move_speed = speed
-	
 	# jump and crouch
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	else:
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = jump
+			%footsteps3d.play()
 		elif Input.is_action_pressed("crouch") or top_cast.is_colliding():
 			move_speed = crouch_speed
 			crouch(delta)
@@ -73,27 +83,66 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = lerp(velocity.x, 0.0, acceleration * delta)
 		velocity.z = lerp(velocity.z, 0.0, acceleration * delta)
-
-	move_and_slide()
+	
+	## Footsteps on a timer
+	#if !%footsteps3d.playing:
+		#%footsteps3d.play()
+	if is_on_floor() and direction != Vector3.ZERO and !force_look:
+		if $Timer.time_left <= 0:
+			%footsteps3d.play()
+			$Timer.start(0.5)
+	
+	if !force_look:
+		move_and_slide()
 	
 	# camera mouse movement
 	head.rotation_degrees.x = look_rot.x
 	rotation_degrees.y = look_rot.y
-		
-	# fall damage
+	
+	# fall damage and force camera
 	label.text = " " + str(og_vel)
-	if og_vel < 0: 
+	if og_vel < 0 and force_look != true: 
 		var diff = velocity.y - og_vel
 		if diff > fall_dmg_threshold: 
-			print("D:")
 			crouch(delta)
-			self.position = start_local
-			## TODO: Call monster sound. Turn screen white noise etc.
+			%footsteps3d.play()
+			force_look = true
+			look_timer = 3.0
+			print("Monster Sound") #TODO: Call monster sound. Turn screen white noise etc.
+			loud_noise.emit()
+			
 	og_vel = velocity.y
+		
+	## Turn keep camera locked to towards the target
+	if force_look:
+		fl(delta)
+		look_timer -= delta
+		if look_timer <= 0.0:
+			position = start_local
+			force_look = false
+	
+	## Pump bass is looking at the angel
+	if ray_cast.is_colliding() and ray_cast.get_collider().is_in_group("angel"):
+		if !looking_at_angel:
+			looking_at_angel = true
+			god_bass.play()
+	else:
+		if looking_at_angel:
+			looking_at_angel = false
+			god_bass.stop()
+
+## Pans camera towards a target
+func fl(delta):
+	var dir = (angel.global_position - head.global_position).normalized()
+	var target_y = rad_to_deg(atan2(-dir.x, -dir.z))
+	var target_x = rad_to_deg(asin(dir.y))
+	look_rot.y = rad_to_deg(lerp_angle(deg_to_rad(look_rot.y),deg_to_rad(target_y),2.0 * delta))
+	look_rot.x = lerp(look_rot.x,target_x,2.0 * delta)
 
 ## Camera moment and throw
 func _input(event):
-	# mouse look
+	if force_look: return
+	
 	if event is InputEventMouseMotion:
 		look_rot.y -= (event.relative.x * sensitivity)
 		look_rot.x -= (event.relative.y * sensitivity)
@@ -118,3 +167,5 @@ func throw_rock():
 	rock.global_transform = throw_point.global_transform
 	var forward = -throw_point.global_transform.basis.z
 	rock.linear_velocity = forward * throw_force + Vector3.UP
+	
+	rock.loud_noise.connect(angel.scream)

@@ -17,7 +17,7 @@ config/icon="res://assets/icon.svg"
 
 [audio]
 
-buses/default_bus_layout="res://assets/audio/default_bus_layout.tres"
+buses/default_bus_layout="uid://x612yctq5cg6"
 
 [display]
 
@@ -27,6 +27,7 @@ window/size/viewport_height=720
 [global_group]
 
 rocks=""
+angel=""
 
 [input]
 

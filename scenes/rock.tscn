@@ -1,5 +1,10 @@
 [gd_scene format=3 uid="uid://ct2lpa3e4ieob"]
 
+[ext_resource type="Script" uid="uid://dtawyl4qwv2rl" path="res://scripts/rock.gd" id="1_1di36"]
+[ext_resource type="AudioStream" uid="uid://76b0rgrc1e5s" path="res://assets/audio/SFX/rock_hits/rock-hit-01.wav" id="2_872ht"]
+[ext_resource type="AudioStream" uid="uid://bbds6m5grrjho" path="res://assets/audio/SFX/rock_hits/rock-hit-02.wav" id="3_p2d0s"]
+[ext_resource type="AudioStream" uid="uid://dh5s14j3vamn4" path="res://assets/audio/SFX/rock_hits/rock-hit-03.wav" id="4_vqvgd"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_t8sxr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8sxr"]
@@ -14,9 +19,20 @@ refraction_texture_channel = 4
 [sub_resource type="BoxMesh" id="BoxMesh_1di36"]
 material = SubResource("StandardMaterial3D_t8sxr")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rmkyt"]
+random_pitch = 1.0656005
+random_volume_offset_db = 1.0
+streams_count = 3
+stream_0/stream = ExtResource("2_872ht")
+stream_1/stream = ExtResource("3_p2d0s")
+stream_2/stream = ExtResource("4_vqvgd")
+
 [node name="Rock" type="RigidBody3D" unique_id=36271811 groups=["rocks"]]
 mass = 10.0
 continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_1di36")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=694791424]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
@@ -25,3 +41,9 @@ shape = SubResource("BoxShape3D_t8sxr")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=971464482]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
 mesh = SubResource("BoxMesh_1di36")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=431113799]
+stream = SubResource("AudioStreamRandomizer_rmkyt")
+volume_db = -15.0
+max_db = 2.0
+bus = &"SFX"

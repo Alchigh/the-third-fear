@@ -1,7 +1,6 @@
 extends Area3D
 
 @export var bad_jump : bool
-
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 
 func _ready() -> void:

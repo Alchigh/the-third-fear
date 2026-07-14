@@ -1,21 +1,26 @@
 [gd_scene format=3 uid="uid://b7ks57n3ixke0"]
 
-[ext_resource type="Shader" uid="uid://b63nuxsr0qhgx" path="res://scripts/outline.gdshader" id="1_fgtlr"]
-[ext_resource type="Script" uid="uid://76isbhqtt7f" path="res://scenes/angel.gd" id="1_mtvsi"]
+[ext_resource type="Script" uid="uid://76isbhqtt7f" path="res://scripts/angel.gd" id="1_mtvsi"]
+[ext_resource type="Shader" uid="uid://cnt44lrmm1h6a" path="res://scripts/sobel_edge.gdshader" id="2_6gyu6"]
+[ext_resource type="AudioStream" uid="uid://dd0s2lkvsvtiq" path="res://assets/audio/SFX/pickupCoin.wav" id="3_6gyu6"]
+[ext_resource type="AudioStream" uid="uid://4liws802cguc" path="res://assets/audio/SFX/58765__suonho__basscapes_ultralowend.wav" id="4_whldq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fgtlr"]
 albedo_color = Color(0, 0, 0, 1)
+emission_energy_multiplier = 7.86
 disable_receive_shadows = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mtvsi"]
 render_priority = 0
-shader = ExtResource("1_fgtlr")
-shader_parameter/outline_color = Color(1, 0, 0, 1)
-shader_parameter/outline_width = 1.0
+shader = ExtResource("2_6gyu6")
+shader_parameter/outline_color = Color(0.87038714, 1.4439225e-06, 1.2513996e-06, 1)
+shader_parameter/outline_threshold = 100.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_6gyu6"]
 subdivide_width = 10
 subdivide_height = 10
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6gyu6"]
 
 [sub_resource type="Animation" id="Animation_fgtlr"]
 length = 0.001
@@ -65,6 +70,21 @@ material_overlay = SubResource("ShaderMaterial_mtvsi")
 cast_shadow = 0
 mesh = SubResource("BoxMesh_6gyu6")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="mesh" unique_id=327199946 groups=["angel"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mesh/StaticBody3D" unique_id=308608675]
+shape = SubResource("BoxShape3D_6gyu6")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1983180220]
 libraries/ = SubResource("AnimationLibrary_6gyu6")
 autoplay = &"idle"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1295097334]
+stream = ExtResource("3_6gyu6")
+
+[node name="god_bass" type="AudioStreamPlayer" parent="." unique_id=1002133166]
+stream = ExtResource("4_whldq")
+volume_db = -3.0
+mix_target = 1
+max_polyphony = 2
+bus = &"SFX"
