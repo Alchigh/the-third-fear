@@ -105,11 +105,7 @@ func _physics_process(delta: float) -> void:
 		var diff = velocity.y - og_vel
 		if diff > fall_dmg_threshold: 
 			crouch(delta)
-			%footsteps3d.play()
-			force_look = true
-			look_timer = 3.0
-			print("Monster Sound") #TODO: Call monster sound. Turn screen white noise etc.
-			loud_noise.emit()
+			fall_event()
 			
 	og_vel = velocity.y
 		
@@ -138,6 +134,14 @@ func fl(delta):
 	var target_x = rad_to_deg(asin(dir.y))
 	look_rot.y = rad_to_deg(lerp_angle(deg_to_rad(look_rot.y),deg_to_rad(target_y),2.0 * delta))
 	look_rot.x = lerp(look_rot.x,target_x,2.0 * delta)
+
+## Fall event
+func fall_event():
+	%footsteps3d.play()
+	force_look = true
+	look_timer = 3.0
+	print("Monster Sound") #TODO: Call monster sound. Turn screen white noise etc.
+	loud_noise.emit()
 
 ## Camera moment and throw
 func _input(event):

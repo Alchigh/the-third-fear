@@ -21,8 +21,9 @@ buses/default_bus_layout="uid://x612yctq5cg6"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=3
 
 [global_group]
 

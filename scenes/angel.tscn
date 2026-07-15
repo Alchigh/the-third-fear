@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://76isbhqtt7f" path="res://scripts/angel.gd" id="1_mtvsi"]
 [ext_resource type="Shader" uid="uid://cnt44lrmm1h6a" path="res://scripts/sobel_edge.gdshader" id="2_6gyu6"]
-[ext_resource type="AudioStream" uid="uid://dd0s2lkvsvtiq" path="res://assets/audio/SFX/pickupCoin.wav" id="3_6gyu6"]
+[ext_resource type="AudioStream" uid="uid://1i0mhdhlo578" path="res://assets/audio/SFX/431241__audiopapkin__futuristic-organic-effect-51.wav" id="3_deem3"]
 [ext_resource type="AudioStream" uid="uid://4liws802cguc" path="res://assets/audio/SFX/58765__suonho__basscapes_ultralowend.wav" id="4_whldq"]
+[ext_resource type="AudioStream" uid="uid://c50nt7p57lymf" path="res://assets/audio/SFX/431254__audiopapkin__futuristic-organic-effect-34.wav" id="4_y5l0u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fgtlr"]
 albedo_color = Color(0, 0, 0, 1)
@@ -60,6 +61,13 @@ _data = {
 &"idle": SubResource("Animation_mtvsi")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5lhwv"]
+random_pitch = 1.0717734
+random_volume_offset_db = 3.0
+streams_count = 2
+stream_0/stream = ExtResource("3_deem3")
+stream_1/stream = ExtResource("4_y5l0u")
+
 [node name="angel" type="Node3D" unique_id=1689193525]
 script = ExtResource("1_mtvsi")
 
@@ -80,7 +88,7 @@ libraries/ = SubResource("AnimationLibrary_6gyu6")
 autoplay = &"idle"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1295097334]
-stream = ExtResource("3_6gyu6")
+stream = SubResource("AudioStreamRandomizer_5lhwv")
 
 [node name="god_bass" type="AudioStreamPlayer" parent="." unique_id=1002133166]
 stream = ExtResource("4_whldq")

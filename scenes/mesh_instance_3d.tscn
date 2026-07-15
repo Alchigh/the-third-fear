@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://7ab5g5vewnrh"]
+
+[ext_resource type="Shader" uid="uid://cnt44lrmm1h6a" path="res://scripts/sobel_edge.gdshader" id="1_tvvxl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_28lvv"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nkjox"]
+render_priority = 0
+shader = ExtResource("1_tvvxl")
+shader_parameter/outline_color = Color(1, 0, 0, 1)
+shader_parameter/outline_threshold = 0.2
+
+[sub_resource type="BoxMesh" id="BoxMesh_6b5mt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tvvxl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tvvxl"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5mqvj"]
+render_priority = 0
+shader = ExtResource("1_tvvxl")
+shader_parameter/outline_color = Color(1, 0, 0.2166667, 1)
+shader_parameter/outline_threshold = 0.2
+
+[node name="MeshInstance3D" type="MeshInstance3D" unique_id=2012851080]
+material_override = SubResource("StandardMaterial3D_28lvv")
+material_overlay = SubResource("ShaderMaterial_nkjox")
+mesh = SubResource("BoxMesh_6b5mt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=827100186]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=119964337]
+shape = SubResource("BoxShape3D_tvvxl")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=352308973]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2058342, 0, 0)
+material_override = SubResource("StandardMaterial3D_tvvxl")
+material_overlay = SubResource("ShaderMaterial_5mqvj")
+use_collision = true

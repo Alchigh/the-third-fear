@@ -1,8 +1,8 @@
 [gd_resource type="AudioBusLayout" format=3 uid="uid://x612yctq5cg6"]
 
-[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_mwo4r"]
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_pldmy"]
 resource_name = "Reverb"
-damping = 1.0
+wet = 1.0
 
 [resource]
 bus/1/name = &"Music"
@@ -17,5 +17,11 @@ bus/2/mute = false
 bus/2/bypass_fx = false
 bus/2/volume_db = 0.0
 bus/2/send = &"Master"
-bus/2/effect/0/effect = SubResource("AudioEffectReverb_mwo4r")
-bus/2/effect/0/enabled = false
+bus/3/name = &"Reverb"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = 0.0
+bus/3/send = &"Master"
+bus/3/effect/0/effect = SubResource("AudioEffectReverb_pldmy")
+bus/3/effect/0/enabled = true

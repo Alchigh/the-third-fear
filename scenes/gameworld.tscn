@@ -6,14 +6,30 @@
 [ext_resource type="Environment" uid="uid://belkyvf25md22" path="res://assets/resources/env.tres" id="3_uqaac"]
 [ext_resource type="PackedScene" uid="uid://cfxjg6s8i8cje" path="res://scenes/simple_player.tscn" id="5_8repx"]
 [ext_resource type="AudioStream" uid="uid://dfxtu5421xpua" path="res://assets/audio/music/614546__szegvari__myst-dark-drone-synth-female-vocal-choir-atmo-ambience-cinematic.wav" id="7_8mu4x"]
-[ext_resource type="PackedScene" uid="uid://dj5mirkd6m3s4" path="res://scenes/levelTests/ttf_testasd.tscn" id="7_ygfup"]
 [ext_resource type="PackedScene" uid="uid://b0bf22deqqi5" path="res://scenes/area_3d.tscn" id="9_32naq"]
 [ext_resource type="PackedScene" uid="uid://b7ks57n3ixke0" path="res://scenes/angel.tscn" id="9_sr1yb"]
 [ext_resource type="AudioStream" uid="uid://0i8qg8oj7hgn" path="res://assets/audio/music/640219__eniru__deep-wind-night-ambience-in-village.wav" id="9_wrnkp"]
+[ext_resource type="Shader" uid="uid://cnt44lrmm1h6a" path="res://scripts/sobel_edge.gdshader" id="10_28lvv"]
+[ext_resource type="Script" uid="uid://dxnxbxehq07aq" path="res://scripts/end_trigger.gd" id="10_rv83r"]
 [ext_resource type="PackedScene" uid="uid://c4ooqteoyklih" path="res://scenes/world_00.tscn" id="10_sr1yb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sr1yb"]
 size = Vector3(4.4626465, 1, 0.6296692)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wrnkp"]
+size = Vector3(25.227598, 1, 3.3387303)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_28lvv"]
+size = Vector3(16.091446, 1, 3.3387303)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rv83r"]
+size = Vector3(17.371813, 1, 3.7249072)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nkjox"]
+size = Vector3(40.13182, 1.7271118, 5.8195987)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6b5mt"]
+size = Vector3(5.4833717, 1, 3.3387303)
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_bpavk"]
 exposure_multiplier = 1.1
@@ -25,6 +41,18 @@ uv1_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uqaac"]
 size = Vector3(250, 1, 250)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wrnkp"]
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_28lvv"]
+render_priority = 0
+shader = ExtResource("10_28lvv")
+shader_parameter/outline_color = Color(1, 0, 0, 1)
+shader_parameter/outline_threshold = 0.1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fdkgn"]
+size = Vector3(144.85913, 4.083397, 161.22885)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_32naq"]
 size = Vector3(5.78, 1, 1.655)
@@ -50,6 +78,76 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02744484, 1.9949112, 0.443
 shape = SubResource("BoxShape3D_sr1yb")
 debug_color = Color(0, 0, 0, 1)
 
+[node name="reverb_zone" type="Area3D" parent="Sounds" unique_id=371588177]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.53784, 56.896923, 33.86209)
+audio_bus_override = true
+audio_bus_name = &"SFX"
+reverb_bus_enabled = true
+reverb_bus_name = &"Reverb"
+reverb_bus_amount = 0.5
+reverb_bus_uniformity = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sounds/reverb_zone" unique_id=809254971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.439856, 1.9949112, 0.676857)
+shape = SubResource("BoxShape3D_wrnkp")
+debug_color = Color(0, 0, 0, 1)
+
+[node name="reverb_zone2" type="Area3D" parent="Sounds" unique_id=2072640697]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.64872, 56.896923, 25.802593)
+audio_bus_override = true
+audio_bus_name = &"SFX"
+reverb_bus_enabled = true
+reverb_bus_name = &"Reverb"
+reverb_bus_amount = 0.5
+reverb_bus_uniformity = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sounds/reverb_zone2" unique_id=569751449]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7574005, 1.9949112, 0.53300476)
+shape = SubResource("BoxShape3D_28lvv")
+debug_color = Color(0, 0, 0, 1)
+
+[node name="reverb_zone3" type="Area3D" parent="Sounds" unique_id=972419171]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 28.359505, 20.428894, 39.228283)
+audio_bus_override = true
+audio_bus_name = &"SFX"
+reverb_bus_enabled = true
+reverb_bus_name = &"Reverb"
+reverb_bus_amount = 0.5
+reverb_bus_uniformity = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sounds/reverb_zone3" unique_id=1232119885]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3030586, 1.9949112, 0.5103531)
+shape = SubResource("BoxShape3D_rv83r")
+debug_color = Color(0, 0, 0, 1)
+
+[node name="reverb_zone4" type="Area3D" parent="Sounds" unique_id=28630480]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2935076, 20.428894, 18.933292)
+audio_bus_override = true
+audio_bus_name = &"SFX"
+reverb_bus_enabled = true
+reverb_bus_name = &"Reverb"
+reverb_bus_amount = 0.5
+reverb_bus_uniformity = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sounds/reverb_zone4" unique_id=603363361]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.076946, 1.6313553, -0.5282612)
+shape = SubResource("BoxShape3D_nkjox")
+debug_color = Color(0, 0, 0, 1)
+
+[node name="reverb_zone5" type="Area3D" parent="Sounds" unique_id=1963354307]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.691517, 35.2979, 95.24597)
+audio_bus_override = true
+audio_bus_name = &"SFX"
+reverb_bus_enabled = true
+reverb_bus_name = &"Reverb"
+reverb_bus_amount = 0.6
+reverb_bus_uniformity = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sounds/reverb_zone5" unique_id=618515789]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.166935, 1.9949112, 0.676857)
+shape = SubResource("BoxShape3D_6b5mt")
+debug_color = Color(0, 0, 0, 1)
+
 [node name="env" type="Node3D" parent="." unique_id=266820594]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="env" unique_id=1139203965]
@@ -57,13 +155,12 @@ environment = ExtResource("3_uqaac")
 camera_attributes = SubResource("CameraAttributesPractical_bpavk")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="env" unique_id=1803482442]
-transform = Transform3D(0.7184896, -0.42151007, 0.553265, -0.16095097, 0.6731005, 0.7218245, -0.67665917, -0.6076719, 0.41577318, 5.835122, 1.8160655, -4.6175694)
+transform = Transform3D(0.7178347, -0.42232123, 0.55349624, -0.16040272, 0.67330015, 0.7217602, -0.6774838, -0.60688686, 0.41557676, 5.835122, 1.8160655, -4.6175694)
 shadow_enabled = true
 
 [node name="terrain" type="Node3D" parent="." unique_id=1236440547]
 
 [node name="floor" type="CSGBox3D" parent="terrain" unique_id=40046607]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 visible = false
 material_override = SubResource("StandardMaterial3D_8vxo5")
 size = Vector3(250, 1, 250)
@@ -99,6 +196,30 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -56.5, 0, 63.605)
 [node name="angel" parent="terrain" unique_id=1689193525 instance=ExtResource("9_sr1yb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.295284, 43.5755, 76.26394)
 
+[node name="bridge" type="CSGBox3D" parent="terrain" unique_id=977899879]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.65525, 5.7409954, 43.75982)
+material_override = SubResource("StandardMaterial3D_wrnkp")
+material_overlay = SubResource("ShaderMaterial_28lvv")
+cast_shadow = 0
+use_collision = true
+size = Vector3(1, 0.35, 46)
+
+[node name="bridge2" type="CSGBox3D" parent="terrain" unique_id=593594777]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16.795, 5.741, 81.314)
+material_override = SubResource("StandardMaterial3D_wrnkp")
+material_overlay = SubResource("ShaderMaterial_28lvv")
+use_collision = true
+size = Vector3(1, 0.35, 46)
+
+[node name="EndTrigger" type="Area3D" parent="terrain" unique_id=1495638657]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.516909, 0, 79.26639)
+script = ExtResource("10_rv83r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="terrain/EndTrigger" unique_id=951606119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.408295, 2.1590157, -25.190659)
+shape = SubResource("BoxShape3D_fdkgn")
+debug_color = Color(0, 0.45, 0.12749998, 1)
+
 [node name="Simple_Player" parent="." unique_id=1394749679 instance=ExtResource("5_8repx")]
 unique_name_in_owner = true
 transform = Transform3D(-0.44999996, 0, 3.9340247e-08, 0, 0.44999996, 0, -3.9340247e-08, 0, -0.44999996, -24.686749, 79.96633, 13.62463)
@@ -115,11 +236,6 @@ monitorable = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.030334473, -1.0302048, -0.5341873)
 shape = SubResource("BoxShape3D_32naq")
 
-[node name="TTF-test" parent="." unique_id=1662259057 instance=ExtResource("7_ygfup")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, -218.36514)
-visible = false
-
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
 
 [editable path="Area3D"]
-[editable path="TTF-test"]
