@@ -147,13 +147,17 @@ func fall_event():
 func _input(event):
 	if force_look: return
 	
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and !AudioManager.settings_open:
 		look_rot.y -= (event.relative.x * sensitivity)
 		look_rot.x -= (event.relative.y * sensitivity)
 		look_rot.x = clamp(look_rot.x, min_angle, max_angle)
 	# throw
 	if event.is_action_pressed("throw"):
 		throw_rock()
+
+	if event.is_action_pressed("menu"):
+		AudioManager.settings()
+		
 
 ## Makes player smaller when CTRL is held down.
 func crouch(delta : float, reverse = false):

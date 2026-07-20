@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://7vux2gom630o"]
+
+[ext_resource type="Script" uid="uid://7ttpox2rvvao" path="res://scripts/audio_manager.gd" id="1_m6ggh"]
+[ext_resource type="AudioStream" uid="uid://76b0rgrc1e5s" path="res://assets/audio/SFX/rock_hits/rock-hit-01.wav" id="2_aoitu"]
+[ext_resource type="AudioStream" uid="uid://bbds6m5grrjho" path="res://assets/audio/SFX/rock_hits/rock-hit-02.wav" id="3_njtn3"]
+[ext_resource type="AudioStream" uid="uid://dh5s14j3vamn4" path="res://assets/audio/SFX/rock_hits/rock-hit-03.wav" id="4_kq7b2"]
+[ext_resource type="PackedScene" uid="uid://ccn1feb5l2uwe" path="res://UI/neumorphism_button.tscn" id="5_aoitu"]
+[ext_resource type="FontFile" uid="uid://b46ta7eexv06y" path="res://assets/fonts/source_serif_4/SourceSerif4-VariableFont_opsz,wght.ttf" id="6_njtn3"]
+[ext_resource type="Texture2D" uid="uid://8yg25nonmv5v" path="res://assets/SliderDiamond.png" id="7_kq7b2"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_02gw7"]
+random_pitch = 1.0656005
+random_volume_offset_db = 1.0
+streams_count = 3
+stream_0/stream = ExtResource("2_aoitu")
+stream_1/stream = ExtResource("3_njtn3")
+stream_2/stream = ExtResource("4_kq7b2")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njtn3"]
+bg_color = Color(0.20285675, 0.030692402, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+shadow_size = 2
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kq7b2"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+
+[node name="audio_manager" type="Node" unique_id=1124102070]
+process_mode = 3
+script = ExtResource("1_m6ggh")
+
+[node name="menu_click" type="AudioStreamPlayer" parent="." unique_id=1942550755]
+stream = SubResource("AudioStreamRandomizer_02gw7")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="settings" type="CanvasLayer" parent="." unique_id=806258876]
+visible = false
+
+[node name="background" type="ColorRect" parent="settings" unique_id=1790397619]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.9607386, 0.9607386, 0.9607386, 0.115)
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="settings" unique_id=88024397]
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_edit_lock_ = true
+
+[node name="back_button" parent="settings/MarginContainer" unique_id=320101845 instance=ExtResource("5_aoitu")]
+modulate = Color(1, 1, 1, 0.90000004)
+layout_mode = 2
+mouse_behavior_recursive = 1
+
+[node name="edges" parent="settings/MarginContainer" unique_id=1469341171 instance=ExtResource("5_aoitu")]
+custom_minimum_size = Vector2(300, 240)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_behavior_recursive = 1
+disabled = true
+button_mask = 0
+
+[node name="sliders" type="VBoxContainer" parent="settings/MarginContainer" unique_id=1647569763]
+custom_minimum_size = Vector2(275, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RTL" type="RichTextLabel" parent="settings/MarginContainer/sliders" unique_id=1965138216]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("6_njtn3")
+theme_override_font_sizes/normal_font_size = 40
+text = "Master Volume"
+fit_content = true
+scroll_active = false
+
+[node name="Master" type="HSlider" parent="settings/MarginContainer/sliders" unique_id=978002343]
+layout_mode = 2
+theme_override_constants/center_grabber = 1
+theme_override_icons/grabber = ExtResource("7_kq7b2")
+theme_override_icons/grabber_highlight = ExtResource("7_kq7b2")
+theme_override_icons/grabber_disabled = ExtResource("7_kq7b2")
+theme_override_styles/slider = SubResource("StyleBoxFlat_njtn3")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_kq7b2")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_kq7b2")
+value = 50.0
+
+[node name="RTL2" type="RichTextLabel" parent="settings/MarginContainer/sliders" unique_id=1005229710]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("6_njtn3")
+theme_override_font_sizes/normal_font_size = 40
+text = "Music Volume"
+fit_content = true
+scroll_active = false
+
+[node name="Music" type="HSlider" parent="settings/MarginContainer/sliders" unique_id=2082577183]
+layout_mode = 2
+theme_override_constants/center_grabber = 1
+theme_override_icons/grabber = ExtResource("7_kq7b2")
+theme_override_icons/grabber_highlight = ExtResource("7_kq7b2")
+theme_override_icons/grabber_disabled = ExtResource("7_kq7b2")
+theme_override_styles/slider = SubResource("StyleBoxFlat_njtn3")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_kq7b2")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_kq7b2")
+value = 50.0
+
+[node name="RTL3" type="RichTextLabel" parent="settings/MarginContainer/sliders" unique_id=2113755729]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("6_njtn3")
+theme_override_font_sizes/normal_font_size = 40
+text = "SFX Volume"
+fit_content = true
+scroll_active = false
+
+[node name="SFX" type="HSlider" parent="settings/MarginContainer/sliders" unique_id=1381489569]
+layout_mode = 2
+theme_override_constants/center_grabber = 1
+theme_override_icons/grabber = ExtResource("7_kq7b2")
+theme_override_icons/grabber_highlight = ExtResource("7_kq7b2")
+theme_override_icons/grabber_disabled = ExtResource("7_kq7b2")
+theme_override_styles/slider = SubResource("StyleBoxFlat_njtn3")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_kq7b2")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_kq7b2")
+value = 50.0

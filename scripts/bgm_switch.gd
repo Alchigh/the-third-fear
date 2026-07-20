@@ -20,6 +20,6 @@ func _on_body_entered(body):
 		await tween.finished
 
 		tween = create_tween()
-		tween.tween_property(bgm, "volume_db", -6, 0.5)
+		tween.tween_property(bgm, "volume_db", -18, 0.5)
 		bgm.stream = new_music
 		bgm.play()

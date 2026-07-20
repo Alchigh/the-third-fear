@@ -5,8 +5,18 @@
 
 - [x] [Fixing Your FPS Controller Camera - Godot Tutorial](https://www.youtube.com/watch?v=zfIuaRzNti4)
 
-- [ ] [How To Code Player Health & Fall Damage In Godot 4](https://www.youtube.com/watch?v=X6gfjdXckpA&list=PL5lzrGsuEBIGkrL3_35j3Efgo-bPCUZI5&index=2)
+- [x] [How To Code Player Health & Fall Damage In Godot 4](https://www.youtube.com/watch?v=X6gfjdXckpA&list=PL5lzrGsuEBIGkrL3_35j3Efgo-bPCUZI5&index=2)
 
 ### Credits:
 - [Prototype Textures](https://www.kenney.nl/assets/prototype-textures)
 - [Triggers and Interactable Objects – Godot 3.5 Tutorial](https://www.youtube.com/watch?v=gK0UKfLHw_4)
+
+### Credits:
+
+- WindBGM
+- BGMVocals
+- Walk cycle
+- Rock
+- Angel
+- Shader
+- 

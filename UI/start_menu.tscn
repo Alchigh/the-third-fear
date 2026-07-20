@@ -1,0 +1,408 @@
+[gd_scene format=3 uid="uid://c0jw4gfqxcqdr"]
+
+[ext_resource type="PackedScene" uid="uid://ccn1feb5l2uwe" path="res://UI/neumorphism_button.tscn" id="1_dl586"]
+[ext_resource type="Script" uid="uid://cor461ea3pavd" path="res://UI/start_menu.gd" id="1_q5qyg"]
+[ext_resource type="FontFile" uid="uid://cjw6u0jihe12p" path="res://assets/fonts/libre_bodoni/LibreBodoni-VariableFont_wght.ttf" id="3_rcgl7"]
+[ext_resource type="AudioStream" uid="uid://dfxtu5421xpua" path="res://assets/audio/music/614546__szegvari__myst-dark-drone-synth-female-vocal-choir-atmo-ambience-cinematic.wav" id="3_yqwmv"]
+[ext_resource type="FontFile" uid="uid://c3avgs57e4i1m" path="res://assets/fonts/lato/Lato-Regular.ttf" id="4_rcgl7"]
+[ext_resource type="FontFile" uid="uid://cjwvxtqitgagg" path="res://assets/fonts/lato/Lato-Italic.ttf" id="5_yqwmv"]
+[ext_resource type="FontFile" uid="uid://b46ta7eexv06y" path="res://assets/fonts/source_serif_4/SourceSerif4-VariableFont_opsz,wght.ttf" id="6_rcgl7"]
+[ext_resource type="Script" uid="uid://0eic3pccmme5" path="res://UI/rtl_url.gd" id="8_2cbuu"]
+[ext_resource type="Texture2D" uid="uid://btwcsqb5yf4dq" path="res://assets/itchio_logo.svg" id="9_olsk0"]
+
+[node name="start_menu" type="Control" unique_id=1146702393]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(960, 0)
+script = ExtResource("1_q5qyg")
+metadata/_edit_lock_ = true
+
+[node name="background" type="ColorRect" parent="." unique_id=287380913]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.9607843, 0.9607843, 0.9607843, 1)
+metadata/_edit_lock_ = true
+
+[node name="Control" type="Control" parent="." unique_id=769426369]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Button" parent="Control" unique_id=320101845 instance=ExtResource("1_dl586")]
+z_index = 2
+layout_mode = 0
+offset_left = 193.0
+offset_top = 294.0
+offset_right = 551.0
+offset_bottom = 823.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+disabled = true
+button_mask = 0
+
+[node name="Button2" parent="Control" unique_id=1926212288 instance=ExtResource("1_dl586")]
+z_index = 1
+layout_mode = 0
+offset_left = 1351.0
+offset_top = 722.0
+offset_right = 1873.436
+offset_bottom = 1098.5127
+rotation = -1.5707964
+pivot_offset = Vector2(0.365, 0)
+mouse_filter = 2
+mouse_behavior_recursive = 1
+disabled = true
+button_mask = 0
+
+[node name="Button3" parent="Control" unique_id=863429011 instance=ExtResource("1_dl586")]
+layout_mode = 0
+offset_left = 1836.0
+offset_top = 1039.0
+offset_right = 2198.5078
+offset_bottom = 1422.1282
+rotation = 3.1415927
+mouse_filter = 2
+mouse_behavior_recursive = 1
+disabled = true
+button_mask = 0
+
+[node name="Button8" parent="Control" unique_id=492089251 instance=ExtResource("1_dl586")]
+layout_mode = 0
+offset_left = 1915.7202
+offset_top = 1074.4313
+offset_right = 2357.9482
+offset_bottom = 1492.9907
+rotation = 3.1415927
+mouse_filter = 2
+mouse_behavior_recursive = 1
+disabled = true
+button_mask = 0
+
+[node name="Button6" parent="Control" unique_id=453236473 instance=ExtResource("1_dl586")]
+layout_mode = 0
+offset_left = 462.0
+offset_top = 485.98465
+offset_right = 885.30774
+offset_bottom = 963.8028
+rotation = 3.1415927
+mouse_filter = 2
+mouse_behavior_recursive = 1
+disabled = true
+button_mask = 0
+
+[node name="Button7" parent="Control" unique_id=1298142165 instance=ExtResource("1_dl586")]
+layout_mode = 0
+offset_left = 1505.9849
+offset_top = 220.00003
+offset_right = 2597.3135
+offset_bottom = 373.76413
+rotation = 3.1415927
+mouse_filter = 2
+mouse_behavior_recursive = 1
+disabled = true
+button_mask = 0
+
+[node name="Button5" parent="Control" unique_id=1565410321 instance=ExtResource("1_dl586")]
+layout_mode = 0
+offset_left = 1476.0
+offset_top = 435.0
+offset_right = 1902.3547
+offset_bottom = 859.2992
+rotation = 4.712389
+mouse_filter = 2
+mouse_behavior_recursive = 1
+disabled = true
+button_mask = 0
+
+[node name="Button4" parent="Control" unique_id=648187472 instance=ExtResource("1_dl586")]
+z_index = 1
+layout_mode = 0
+offset_left = 446.4307
+offset_top = 643.0
+offset_right = 849.26514
+offset_bottom = 1075.4727
+rotation = 1.5707964
+mouse_filter = 2
+mouse_behavior_recursive = 1
+disabled = true
+button_mask = 0
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=114300453]
+stream = ExtResource("3_yqwmv")
+volume_db = -15.0
+autoplay = true
+
+[node name="logo" type="Control" parent="." unique_id=551847321]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = -98.0
+offset_right = -179.0
+offset_bottom = -58.000366
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="name" type="RichTextLabel" parent="logo" unique_id=202896903]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -95.0
+offset_right = 641.0
+offset_bottom = -14.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_rcgl7")
+theme_override_font_sizes/normal_font_size = 64
+text = "The Third Fear"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="phonetics" type="RichTextLabel" parent="logo" unique_id=1895099635]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -25.0
+offset_right = 134.0
+offset_bottom = 5.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_rcgl7")
+theme_override_fonts/italics_font = ExtResource("5_yqwmv")
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/italics_font_size = 22
+bbcode_enabled = true
+text = "[[i]ðə[/i]] [θɜːd] [fɪə]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="marketing_line" type="RichTextLabel" parent="logo" unique_id=1507787276]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 28.67
+offset_right = 430.0
+offset_bottom = 96.67
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("6_rcgl7")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "You have only two innate fears: 
+Heights and Loud noises"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ColorRect" type="ColorRect" parent="logo" unique_id=1134268730]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 20.0
+offset_right = 398.0
+offset_bottom = 21.5
+color = Color(0, 0, 0, 1)
+
+[node name="logo2" type="Control" parent="." unique_id=180794779]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -220.0
+offset_right = -280.0
+offset_bottom = -180.00037
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="logo2" unique_id=2059098368]
+layout_mode = 0
+
+[node name="name" type="RichTextLabel" parent="logo2" unique_id=1095399174]
+layout_mode = 0
+offset_right = 656.0
+offset_bottom = 121.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("3_rcgl7")
+theme_override_font_sizes/normal_font_size = 96
+text = "The Third Fear"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="phonetics" type="RichTextLabel" parent="logo2" unique_id=1618662750]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 100.0
+offset_right = 668.0
+offset_bottom = 145.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_rcgl7")
+theme_override_fonts/italics_font = ExtResource("5_yqwmv")
+theme_override_font_sizes/normal_font_size = 33
+theme_override_font_sizes/italics_font_size = 33
+bbcode_enabled = true
+text = "[[i]ðə[/i]] [θɜːd] [fɪə]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ColorRect" type="ColorRect" parent="logo2" unique_id=541423342]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 160.0
+offset_right = 620.37
+offset_bottom = 162.0
+color = Color(0, 0, 0, 1)
+
+[node name="marketing_line" type="RichTextLabel" parent="logo2" unique_id=1249555961]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 167.705
+offset_right = 668.0
+offset_bottom = 269.70532
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/line_separation = -10
+theme_override_fonts/normal_font = ExtResource("6_rcgl7")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "You have only two innate fears: 
+Heights and Loud noises"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="buttons" type="VBoxContainer" parent="." unique_id=280005608]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.5
+offset_top = -402.5
+offset_right = 87.5
+offset_bottom = 402.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="buttons" unique_id=567153378]
+layout_mode = 2
+theme_override_constants/margin_top = 550
+
+[node name="play" parent="buttons" unique_id=1369125525 instance=ExtResource("1_dl586")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Play"
+
+[node name="settings" parent="buttons" unique_id=953166675 instance=ExtResource("1_dl586")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Settings"
+
+[node name="credits" parent="buttons" unique_id=308556741 instance=ExtResource("1_dl586")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Credits"
+
+[node name="quit" parent="buttons" unique_id=227611276 instance=ExtResource("1_dl586")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
+
+[node name="credits" type="CanvasLayer" parent="." unique_id=1990808687]
+visible = false
+
+[node name="background" type="ColorRect" parent="credits" unique_id=1718786238]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.9607843, 0.9607843, 0.9607843, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="credits" unique_id=1289725509]
+custom_minimum_size = Vector2(720, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -262.0
+offset_right = 360.0
+offset_bottom = 262.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="back_button" parent="credits/MarginContainer" unique_id=1993385822 instance=ExtResource("1_dl586")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="credits/MarginContainer/back_button" unique_id=951634961]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="RTL" type="RichTextLabel" parent="credits/MarginContainer/back_button/MarginContainer" unique_id=1758219589]
+z_index = 1
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("6_rcgl7")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "BGM:
+- [url=https://freesound.org/people/eniru/sounds/640219/]Eniru > Wind ambience[/url]
+- [url=https://freesound.org/people/szegvari/sounds/614546/]szegvari > Vocal BGM[/url]
+SFX:
+- [url=https://pixabay.com/sound-effects/film-special-effects-footsteps-boots-on-tile-74542/]speedygonzo (Freesound)[/url] > Footsteps
+- [url=https://freesound.org/people/Timbre/sounds/102905/]Timbre > Rock throw[/url]
+- [url=https://freesound.org/people/suonho/sounds/58765/]suonho > Bass SFX[/url]
+Shaders:
+- [url=https://godotshaders.com/shader/per-object-sobel-edge-detection-shader/]CidreDev > Sobel Edge Detection[/url]"
+fit_content = true
+scroll_active = false
+script = ExtResource("8_2cbuu")
+
+[node name="itch_io" type="CanvasLayer" parent="." unique_id=1172522330]
+
+[node name="itch_button" parent="itch_io" unique_id=195093122 instance=ExtResource("1_dl586")]
+visible = false
+offset_left = 1548.0
+offset_top = 765.0
+offset_right = 1813.0
+offset_bottom = 1002.0
+icon = ExtResource("9_olsk0")
+
+[node name="itch_logo" type="Sprite2D" parent="itch_io" unique_id=1816443646]
+position = Vector2(1720, 944)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_olsk0")
