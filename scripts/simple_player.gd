@@ -18,11 +18,11 @@ class_name Player
 
 @export_group("Camera")
 ## Camera moment speed
-@export var sensitivity = 0.5
+@export var sensitivity: float = 0.5
 ## Max angle when looking down
-@export var min_angle = -80
+@export var min_angle: int = -80
 ## Max angle when looking up
-@export var max_angle = 90
+@export var max_angle: int = 90
 
 @onready var head: Node3D = $Head
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
@@ -31,23 +31,23 @@ class_name Player
 @onready var angel: Node3D = $"../terrain/angel"
 @onready var god_bass: AudioStreamPlayer = $"../terrain/angel/god_bass"
 @onready var ray_cast: RayCast3D = $Head/RayCast3D
-var looking_at_angel := false
+var looking_at_angel: bool = false
 
 # Get the gravity from project settings
 var gravity = 2 * ProjectSettings.get_setting("physics/3d/default_gravity")
 var look_rot : Vector2
 var stand_height : float
-var og_vel : float = 0.0
+var og_vel: float = 0.0
 ## Where player start
-var start_local : Vector3
+var start_local: Vector3
 
-var force_look : bool = false
-var look_timer := 0.0
+var force_look: bool = false
+var look_timer: float = 0.0
 signal loud_noise
 
 @export_group("Rock")
 @export var rock_scene: PackedScene
-@export var throw_force = 15.0
+@export var throw_force: float = 15.0
 @onready var throw_point : Marker3D = $Head/Marker3D
 
 func _ready():

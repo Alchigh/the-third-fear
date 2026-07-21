@@ -139,8 +139,9 @@ button_mask = 0
 
 [node name="BGM" type="AudioStreamPlayer" parent="." unique_id=114300453]
 stream = ExtResource("3_yqwmv")
-volume_db = -15.0
+volume_db = -10.0
 autoplay = true
+bus = &"Music"
 
 [node name="logo" type="Control" parent="." unique_id=551847321]
 visible = false
@@ -403,6 +404,7 @@ offset_bottom = 1002.0
 icon = ExtResource("9_olsk0")
 
 [node name="itch_logo" type="Sprite2D" parent="itch_io" unique_id=1816443646]
+unique_name_in_owner = true
 position = Vector2(1720, 944)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("9_olsk0")

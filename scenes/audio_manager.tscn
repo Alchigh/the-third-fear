@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ccn1feb5l2uwe" path="res://UI/neumorphism_button.tscn" id="5_aoitu"]
 [ext_resource type="FontFile" uid="uid://b46ta7eexv06y" path="res://assets/fonts/source_serif_4/SourceSerif4-VariableFont_opsz,wght.ttf" id="6_njtn3"]
 [ext_resource type="Texture2D" uid="uid://8yg25nonmv5v" path="res://assets/SliderDiamond.png" id="7_kq7b2"]
+[ext_resource type="Script" uid="uid://cctcd26wkeblc" path="res://UI/volume_slider.gd" id="8_02gw7"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_02gw7"]
 random_pitch = 1.0656005
@@ -111,7 +112,11 @@ theme_override_icons/grabber_disabled = ExtResource("7_kq7b2")
 theme_override_styles/slider = SubResource("StyleBoxFlat_njtn3")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_kq7b2")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_kq7b2")
-value = 50.0
+max_value = 1.0
+step = 0.01
+value = 0.5
+script = ExtResource("8_02gw7")
+bus_name = "Master"
 
 [node name="RTL2" type="RichTextLabel" parent="settings/MarginContainer/sliders" unique_id=1005229710]
 layout_mode = 2
@@ -131,7 +136,11 @@ theme_override_icons/grabber_disabled = ExtResource("7_kq7b2")
 theme_override_styles/slider = SubResource("StyleBoxFlat_njtn3")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_kq7b2")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_kq7b2")
-value = 50.0
+max_value = 1.0
+step = 0.01
+value = 0.5
+script = ExtResource("8_02gw7")
+bus_name = "Music"
 
 [node name="RTL3" type="RichTextLabel" parent="settings/MarginContainer/sliders" unique_id=2113755729]
 layout_mode = 2
@@ -151,4 +160,8 @@ theme_override_icons/grabber_disabled = ExtResource("7_kq7b2")
 theme_override_styles/slider = SubResource("StyleBoxFlat_njtn3")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_kq7b2")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_kq7b2")
-value = 50.0
+max_value = 1.0
+step = 0.01
+value = 0.5
+script = ExtResource("8_02gw7")
+bus_name = "SFX"

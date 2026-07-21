@@ -1,12 +1,13 @@
 extends Node
 
+@onready var settings_canvas: CanvasLayer = $settings
 @onready var menu_click: AudioStreamPlayer = $menu_click
-var settings_open := false
+var settings_open: bool = false
 
-func play():
+func play() -> void:
 	menu_click.play()
 
-func settings():
+func settings() -> void:
 	$settings.visible = not $settings.visible
 	if !settings_open:
 		settings_open = true
@@ -14,7 +15,3 @@ func settings():
 	else:
 		settings_open = false
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
-#func _input(event: InputEvent) -> void:
-	#if event.is_action_pressed("menu"):
-		#$settings.visible = false
