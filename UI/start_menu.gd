@@ -4,6 +4,7 @@ var tween: Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	AudioManager.state = "Start"
 	%play.pressed.connect(_on_play_pressed)
 	%quit.pressed.connect(_on_quit_pressed)
 	
@@ -13,10 +14,12 @@ func _ready() -> void:
 	#%No.pressed.connect(_on_no)
 	
 	#%ItchButton.pressed.connect(_on_itchIo)
+	%itch_logo.pressed.connect(_on_itchIo)
 
 func _on_play_pressed() -> void:
 	await tween_animation(%play)
 	AudioManager.play()
+	AudioManager.state = "Game"
 	$BGM.stop()
 	get_tree().change_scene_to_file("res://scenes/gameworld.tscn")
 
@@ -40,6 +43,7 @@ func _on_quit_pressed() -> void:
 ## What Itch.Io button does
 func _on_itchIo() -> void:
 	#%ItchIoLogo.scale = Vector2(0.15, 0.15)
+	AudioManager.play()
 	await tween_animation(%itch_logo)
 	OS.shell_open("https://alchigh.itch.io/")
 
