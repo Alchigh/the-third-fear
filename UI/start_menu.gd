@@ -45,7 +45,7 @@ func _on_itchIo() -> void:
 	#%ItchIoLogo.scale = Vector2(0.15, 0.15)
 	AudioManager.play()
 	await tween_animation(%itch_logo)
-	OS.shell_open("https://alchigh.itch.io/")
+	OS.shell_open("https://alchigh.itch.io/the-third-fear")
 
 ## Animates buttons presses
 func tween_animation(input):
